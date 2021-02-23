@@ -22,16 +22,6 @@ use kartik\date\DatePicker;
         </div>
     </div>
 
-
-    <div class="form-group row">
-        <div class="col-md-6">
-            <?= $form->field($model, 'email')->textInput() ?>
-        </div>
-        <div class="col-md-6">
-            <?= $form->field($model, 'password_hash')->passwordInput() ?>
-        </div>
-    </div>
-
     <div class="form-group row">
         <div class="col-md-6">
             <?= $form->field($model, 'data_nascimento')->widget(DatePicker::class, [
@@ -43,6 +33,15 @@ use kartik\date\DatePicker;
                     'format' => 'dd/mm/yyyy',
                 ]
             ]) ?>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-6">
+            <?= $form->field($model, 'email')->textInput() ?>
+        </div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'password_hash')->passwordInput() ?>
         </div>
     </div>
 
