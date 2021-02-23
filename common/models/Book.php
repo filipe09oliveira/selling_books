@@ -30,14 +30,13 @@ class Book extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function behaviors()
     {
         return [
-            TimestampBehavior::class,
-            [
-                'class' => ChangeLogBehavior::class,
-                'excludedAttributes' => ['created_at', 'updated_at'],
-            ],
+            TimestampBehavior::className(),
         ];
     }
 
