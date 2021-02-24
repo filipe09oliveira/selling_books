@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use yii\helpers\Html;
@@ -30,7 +31,7 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
-        'brandUrl' => '',
+        'brandUrl' => '/book',
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
@@ -40,16 +41,16 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Cadastrar', 'url' => ['/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/login']];
     } else {
-        $menuItems[] = ['label' => 'Livros a venda', 'url' => ['/book']];
-        $menuItems[] = ['label' => 'Meus livros', 'url' => ['book/comprados']];
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/logout'], 'post')
-            . Html::submitButton(
-                'Sair (' . Yii::$app->user->identity->nome . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
+//        $menuItems[] = ['label' => 'Livros a venda', 'url' => ['/book']];
+        $menuItems[] =
+            [
+                'label' => Yii::$app->user->identity->nome . ' ' . Yii::$app->user->identity->sobrenome,
+                'items' => [
+                    ['label' => 'Perfil', 'url' => ['/perfil']],
+                    ['label' => 'Meus livros', 'url' => ['book/comprados']],
+                    ['label' => 'Sair', 'url' => ['/logout']],
+                ],
+            ];
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],

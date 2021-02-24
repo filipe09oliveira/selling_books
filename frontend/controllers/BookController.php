@@ -37,8 +37,9 @@ class BookController extends Controller
                             'comprar',
                             'retirar',
                             'create',
-                            'update',
+                            'livros-venda',
                             'view',
+                            'update',
                             'delete',
                             'search',
                         ],
@@ -108,12 +109,21 @@ class BookController extends Controller
 
 
     /**
-     * Displays a single Book model.
-     * @param integer $id
+     * Lists all Book models.
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Lists all Book models.
+     * @return mixed
+     */
+    public function actionLivrosVenda($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),

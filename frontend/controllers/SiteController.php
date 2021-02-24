@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Book;
+use frontend\models\BookSearch;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -45,7 +47,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['get'],
                 ],
             ],
         ];
@@ -74,7 +76,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new BookSearch();
+        $searchModel->status = Book::AVENDA;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('/book/index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**

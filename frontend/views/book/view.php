@@ -8,17 +8,24 @@ use yii\helpers\Html;
 $this->title = $model->nome;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="panel panel-default" style="margin-top: 80px">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Descrição do produto</h3>
+    </div>
     <ul class="list-group">
         <li class="list-group-item">
                 <span class="badge" style="background-color: white; margin-top: 30px">
-                    <?php if ($model->status == \common\models\Book::AVENDA) { ?>
+                    <?php if ($model->status == \common\models\Book::AVENDA && !Yii::$app->user->isGuest) { ?>
                         <?= Html::a('<i class="glyphicon glyphicon-shopping-cart"></i>'. ' Comprar', ['comprar', 'book_id' => $model->id], [
                             'class' => 'btn btn-default btn-success',
                             'data' => [
                                 'confirm' => 'Tem certeza que deseja comprar o livro ' . $model->nome . '?',
                                 'method' => 'post',
                             ]
+                        ]); ?>
+                    <?php } else { ?>
+                        <?= Html::a('<i class="glyphicon glyphicon-shopping-cart"></i>'. ' Comprar', ['/login'], [
+                            'class' => 'btn btn-default btn-success',
                         ]); ?>
                     <?php } ?>
                 </span>

@@ -4,6 +4,7 @@ return [
     '/' => 'site/index',
     '/signup' => 'site/signup',
     '/login' => 'site/login',
+//    'POST /logout' => 'site/logout',
     '/logout' => 'site/logout',
 
 
@@ -17,4 +18,5 @@ return [
     '<controller>/comprar/<book_id:\d+>' => '<controller>/comprar',
     '<controller>/comprados' => '<controller>/comprados',
     '<controller>/retirar/<book_id:\d+>' => '<controller>/retirar',
+    '<controller>/livros-venda/<id:\d+>' => '<controller>/livros-venda',
 ];
