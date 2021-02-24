@@ -33,6 +33,15 @@ class User extends ActiveRecord implements IdentityInterface
     const CUSTOMER_TYPE = 1;
     const ADMINISTRATOR_TYPE = 2;
 
+    public static function listStatus()
+    {
+        return [
+            self::STATUS_DELETED => 'Deletado',
+            self::STATUS_INACTIVE => 'Inativo',
+            self::STATUS_ACTIVE => 'Ativo',
+        ];
+    }
+
 
 
     /**
@@ -100,12 +109,12 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Finds user by username
      *
-     * @param string $username
+     * @param string $nome
      * @return static|null
      */
-    public static function findByUsername($username)
+    public static function findByUsername($nome)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['nome' => $nome, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\models\Book;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\BookSearch */
@@ -15,25 +16,27 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <div class="form-group row">
+        <div class="col-md-6">
+            <?= $form->field($model, 'nome') ?>
+        </div>
 
-    <?= $form->field($model, 'nome') ?>
+        <div class="col-md-6">
+            <?= $form->field($model, 'autor') ?>
+        </div>
 
-    <?= $form->field($model, 'resumo') ?>
+        <div class="col-md-6">
+            <?= $form->field($model, 'edicao') ?>
+        </div>
 
-    <?= $form->field($model, 'autor') ?>
-
-    <?= $form->field($model, 'edicao') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
-
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'updated_at') ?>
+        <div class="col-md-6">
+            <?= $form->field($model, 'status')->dropDownList(Book::listStatus(), ['prompt' => 'SELECIONE']) ?>
+        </div>
+    </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Filtrar', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Limpar', ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

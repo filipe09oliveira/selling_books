@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap\Modal;
 
 /**
  * @var $model \common\models\Book
@@ -20,8 +19,12 @@ use yii\bootstrap\Modal;
                     ]) ?>
 
                     <?php if ($model->status == \common\models\Book::AVENDA) { ?>
-                        <?= Html::a('<i class="glyphicon glyphicon-piggy-bank"></i>', ['comprar', 'book_id' => $model->id], [
+                        <?= Html::a('<i class="glyphicon glyphicon-shopping-cart"></i>', ['comprar', 'book_id' => $model->id], [
                             'class' => 'btn btn-default btn-success',
+                            'data' => [
+                                'confirm' => 'Tem certeza que deseja comprar o livro ' . $model->nome . '?',
+                                'method' => 'post',
+                            ]
                         ]); ?>
                     <?php } ?>
                 </span>

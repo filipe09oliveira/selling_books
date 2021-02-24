@@ -69,7 +69,7 @@ class Book extends \yii\db\ActiveRecord
             'nome' => 'Nome',
             'resumo' => 'Resumo',
             'autor' => 'Autor',
-            'edicao' => 'Edicao',
+            'edicao' => 'Edição',
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Deleted At',

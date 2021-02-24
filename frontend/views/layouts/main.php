@@ -30,21 +30,18 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandUrl' => '',
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-//        ['label' => 'Home', 'url' => ['/index']],
-//        ['label' => 'About', 'url' => ['/about']],
-//        ['label' => 'Contact', 'url' => ['/contact']],
-        ['label' => 'Livros', 'url' => ['/book']],
-    ];
+
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/signup']];
+        $menuItems[] = ['label' => 'Cadastrar', 'url' => ['/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/login']];
     } else {
+        $menuItems[] = ['label' => 'Livros a venda', 'url' => ['/book']];
+        $menuItems[] = ['label' => 'Meus livros', 'url' => ['book/comprados']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/logout'], 'post')
             . Html::submitButton(

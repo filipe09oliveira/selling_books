@@ -2,10 +2,13 @@
 
 namespace frontend\controllers;
 
+use common\components\AccessRule;
 use common\models\ClientBook;
+use common\models\User;
 use Yii;
 use common\models\Book;
 use frontend\models\BookSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -21,8 +24,30 @@ class BookController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::class,
+                'ruleConfig' => [
+                    'class' => AccessRule::class,
+                ],
+                'rules' => [
+                    [
+                        'actions' => [
+                            'index',
+                            'comprados',
+                            'comprar',
+                            'retirar',
+                            'create',
+                            'update',
+                            'view',
+                            'delete',
+                            'search',
+                        ],
+                        'allow' => true,
+                    ],
+                ],
+            ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -37,12 +62,35 @@ class BookController extends Controller
     public function actionIndex()
     {
         $searchModel = new BookSearch();
+        $searchModel->status = Book::AVENDA;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionComprados()
+    {
+        $client = Yii::$app->user->identity;
+        $meusLivros = ClientBook::find()->where(['client_id' => $client->id])->all();
+
+        return $this->render('meus_livros', [
+            'meusLivros' => $meusLivros,
+        ]);
+    }
+
+    public function actionRetirar($book_id)
+    {
+        $client = Yii::$app->user->identity;
+        $book = Book::find()->where(['id' => $book_id])->one();
+        $clientBook = ClientBook::find()->where(['client_id' => $client->id])->andWhere(['book_id' => $book_id])->one();
+
+        $book->status = Book::AVENDA;
+        if ($book->save() && $clientBook->delete()){
+            $this->redirect(['comprados']);
+        }
     }
 
     public function actionComprar($book_id)

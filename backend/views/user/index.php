@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use kartik\grid\ActionColumn;
+use common\models\User;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\UserSearch */
@@ -30,7 +31,13 @@ $this->title = 'Clientes';
                     'sobrenome',
                     'email',
                     'data_nascimento',
-                    'status',
+                    [
+                        'attribute' => 'status',
+                        'value' => function (User $model){
+                            return User::listStatus()[$model->status];
+                        },
+                        'filter' => User::listStatus()
+                    ],
 
 
                     [

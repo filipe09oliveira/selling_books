@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
+use common\models\User;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
@@ -34,6 +36,19 @@ use kartik\date\DatePicker;
                 ]
             ]) ?>
         </div>
+
+        <div class="col-md-6">
+            <?= $model->isNewRecord ? '' : $form->field($model, 'status')->widget(Select2::class, [
+                'language' => Yii::$app->language,
+                'data' => User::listStatus(),
+                'theme' => Select2::THEME_BOOTSTRAP,
+                'options' => ['placeholder' => 'Selecione um status'],
+                'pluginOptions' => [
+                    'allowClear' => true,
+                ],
+
+            ]) ?>
+        </div>
     </div>
 
     <div class="form-group row">
@@ -41,12 +56,12 @@ use kartik\date\DatePicker;
             <?= $form->field($model, 'email')->textInput() ?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($model, 'password_hash')->passwordInput() ?>
+            <?= $model->isNewRecord ? $form->field($model, 'password_hash')->passwordInput() : '' ?>
         </div>
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Cadastrar' : 'Atualizar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

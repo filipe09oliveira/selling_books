@@ -14,5 +14,7 @@ return [
     '<controller>/view/<id:\d+>' => '<controller>/view',
     '<controller>/search' => '<controller>/search',
 
-    'book/comprar/<book_id:\d+>' => 'book/comprar',
+    '<controller>/comprar/<book_id:\d+>' => '<controller>/comprar',
+    '<controller>/comprados' => '<controller>/comprados',
+    '<controller>/retirar/<book_id:\d+>' => '<controller>/retirar',
 ];
