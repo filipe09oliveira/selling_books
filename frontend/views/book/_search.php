@@ -26,10 +26,6 @@ use common\models\Book;
         </div>
 
         <div class="col-md-6">
-            <?= $form->field($model, 'edicao') ?>
-        </div>
-
-        <div class="col-md-6">
             <?= $form->field($model, 'status')->dropDownList(Book::listStatus(), ['prompt' => 'SELECIONE']) ?>
         </div>
     </div>

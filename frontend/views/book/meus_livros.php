@@ -34,7 +34,6 @@ $this->title = 'Meus livros';
                         <div style="max-width: 850px">
                             <?= $meuLivro->book->resumo ?>
                         </div>
-
                     </div>
                 </li>
             </ul>

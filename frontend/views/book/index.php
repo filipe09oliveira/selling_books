@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\BookSearch */
@@ -25,18 +24,18 @@ $this->registerJs("
 <div class="book-index">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3><?= Html::encode($this->title) ?></h3>
-            <?= Html::a('<i
-                                class="fas fa-filter fa-lg"></i>   ' . 'Filtro', ['#'], [
-                'class' => 'btn btn-primary btn-laranja btn-sm',
-                'id' => 'extended-search-lnk',
-                'helper-id' => 'filtro',
-            ]) ?>
-        </div>
-        <div class="panel-body">
+            <div style="margin-bottom: 10px">
+                <?= Html::a('<i class="glyphicon glyphicon-search"></i>   ' . 'Filtro', ['#'], [
+                    'class' => 'btn btn-primary btn-laranja btn-sm',
+                    'id' => 'extended-search-lnk',
+                    'helper-id' => 'filtro',
+                ]) ?>
+            </div>
             <div id="extended-search" style="display: none;">
                 <?php echo $this->render('_search', ['model' => $searchModel]); ?>
             </div>
+        </div>
+        <div class="panel-body">
             <?= \yii\widgets\ListView::widget([
                 'dataProvider' => $dataProvider,
                 'itemView' => 'list_books',

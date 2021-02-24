@@ -55,7 +55,7 @@ class Book extends \yii\db\ActiveRecord
     {
         return [
             [['status', 'created_at', 'updated_at'], 'integer'],
-            [['nome', 'resumo', 'autor', 'edicao'], 'string', 'max' => 255],
+            [['nome', 'resumo', 'autor', 'edicao'], 'string'],
         ];
     }
 
