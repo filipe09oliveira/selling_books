@@ -43,7 +43,7 @@ $this->title = $model->nome;
     <div class="panel-footer ">
         <div class="row">
             <div class="row">
-                <div class="col-md-2 border-right text-center small">
+                <div class="col-md-4 border-right text-center small">
                     <strong class="text-muted small font-weight-bold">Edição: </strong>
                     <div class="text-overflow">
                         <span class="small">
@@ -52,7 +52,7 @@ $this->title = $model->nome;
                     </div>
                 </div>
 
-                <div class="col-md-2 border-right text-center small">
+                <div class="col-md-4 border-right text-center small">
                     <strong class="text-muted small font-weight-bold">Autor: </strong>
                     <div class="text-overflow">
                         <span class="small">
@@ -61,7 +61,7 @@ $this->title = $model->nome;
                     </div>
                 </div>
 
-                <div class="col-md-2 border-right text-center small">
+                <div class="col-md-4 border-right text-center small">
                     <strong class="text-muted small font-weight-bold">Status do Produto: </strong>
                     <div class="text-overflow">
                         <span class="small">
