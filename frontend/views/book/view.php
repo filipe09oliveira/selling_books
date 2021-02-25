@@ -7,42 +7,39 @@ use yii\helpers\Html;
 
 $this->title = $model->nome;
 \yii\web\YiiAsset::register($this);
+
 ?>
+<div class="jumbotron" style="padding: 20px">
+    <h2><?= $model->nome ?></h2>
+</div>
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3>Descrição do produto</h3>
-    </div>
-    <ul class="list-group">
-        <li class="list-group-item">
-                <span class="badge" style="background-color: white; margin-top: 30px">
+    <div class="panel-body">
+        <div class="media">
+            <div class="media-left">
+                <img src="/imagens/book2.jpg" class="media-object" style="width:250px">
+                <br>
+                <?php if (empty($model->clientBook)) { ?>
                     <?php if ($model->status == \common\models\Book::AVENDA && !Yii::$app->user->isGuest) { ?>
-                        <?= Html::a('<i class="glyphicon glyphicon-shopping-cart"></i>'. ' Comprar', ['comprar', 'book_id' => $model->id], [
-                            'class' => 'btn btn-default btn-success',
+                        <?= Html::a('<i class="glyphicon glyphicon-shopping-cart"></i>' . ' Comprar', ['comprar', 'book_id' => $model->id], [
+                            'class' => 'btn btn-default btn-success btn-blok',
                             'data' => [
                                 'confirm' => 'Tem certeza que deseja comprar o livro ' . $model->nome . '?',
                                 'method' => 'post',
                             ]
                         ]); ?>
                     <?php } else { ?>
-                        <?= Html::a('<i class="glyphicon glyphicon-shopping-cart"></i>'. ' Comprar', ['/login'], [
-                            'class' => 'btn btn-default btn-success',
+                        <?= Html::a('<i class="glyphicon glyphicon-shopping-cart"></i>' . ' Comprar', ['/login'], [
+                            'class' => 'btn btn-default btn-success btn-blok',
                         ]); ?>
                     <?php } ?>
-                </span>
-            <div>
-                <label>Livro:</label>
-                <?= $model->nome ?>
+                <?php } ?>
             </div>
-            <hr>
-            <div>
-                <label>Resumo</label>
-                <div style="max-width: 850px">
-                    <?= $model->resumo ?>
-                </div>
-
+            <div class="media-body" style="padding: 20px; text-align: justify">
+                <h4 class="media-heading">Resumo</h4>
+                <p><?= $model->resumo ?></p>
             </div>
-        </li>
-    </ul>
+        </div>
+    </div>
     <div class="panel-footer ">
         <div class="row">
             <div class="row">

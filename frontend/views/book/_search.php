@@ -17,15 +17,15 @@ use common\models\Book;
     ]); ?>
 
     <div class="form-group row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <?= $form->field($model, 'nome') ?>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12">
             <?= $form->field($model, 'autor') ?>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12">
             <?= $form->field($model, 'status')->dropDownList(Book::listStatus(), ['prompt' => 'SELECIONE']) ?>
         </div>
     </div>

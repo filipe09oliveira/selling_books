@@ -20,21 +20,22 @@ $this->registerJs("
     })
 ");
 ?>
-
-<div class="book-index">
+<div class="jumbotron" style="padding: 20px">
+    <h2>Nossos Livros</h2>
+</div>
+<div class="book-index col-md-3">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div style="margin-bottom: 10px">
-                <?= Html::a('<i class="glyphicon glyphicon-search"></i>   ' . 'Filtro', ['#'], [
-                    'class' => 'btn btn-primary btn-laranja btn-sm',
-                    'id' => 'extended-search-lnk',
-                    'helper-id' => 'filtro',
-                ]) ?>
-            </div>
-            <div id="extended-search" style="display: none;">
-                <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-            </div>
+            Filtros
         </div>
+        <div class="panel-body">
+            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+        </div>
+    </div>
+</div>
+
+<div class="book-index col-md-9">
+    <div class="panel panel-default">
         <div class="panel-body">
             <?= \yii\widgets\ListView::widget([
                 'dataProvider' => $dataProvider,
@@ -45,7 +46,6 @@ $this->registerJs("
         </div>
     </div>
 </div>
-
 <?php
 $funcionarioSearch = Yii::$app->request->get('FuncionarioSearch');
 $funcionarioCount = count(isset($funcionarioSearch) ? $funcionarioSearch : []);

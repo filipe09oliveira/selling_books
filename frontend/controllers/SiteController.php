@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\Book;
+use common\models\User;
 use frontend\models\BookSearch;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
@@ -38,7 +39,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'perfil'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -83,6 +84,20 @@ class SiteController extends Controller
         return $this->render('/book/index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionPerfil($id)
+    {
+
+        $user = User::find()->where(['id' => $id])->one();
+
+        if ($user->load(Yii::$app->request->post()) && $user->save()) {
+            return $this->redirect(['perfil', 'id' => $user->id]);
+        }
+
+        return $this->render('perfil', [
+            'user' => $user
         ]);
     }
 

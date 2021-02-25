@@ -4,8 +4,8 @@ return [
     '/' => 'site/index',
     '/signup' => 'site/signup',
     '/login' => 'site/login',
-//    'POST /logout' => 'site/logout',
     '/logout' => 'site/logout',
+    '/perfil/<id:\d+>' => 'site/perfil',
 
 
     '<controller>' => '<controller>/index',

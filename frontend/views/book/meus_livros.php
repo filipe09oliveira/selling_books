@@ -6,37 +6,39 @@ use yii\bootstrap\Html;
 
 $this->title = 'Meus livros';
 ?>
-
+<div class="jumbotron" style="padding: 20px">
+    <h2>Meus Livros</h2>
+</div>
 <div class="class-client-book-index">
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3><?= Html::encode($this->title) ?></h3>
-        </div>
         <div class="panel-body">
             <?php foreach ($meusLivros as $meuLivro) { ?>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <span class="badge" style="background-color: white; margin-top: 30px">
-                        <?= Html::a('<i class="glyphicon glyphicon-trash"></i>', ['retirar', 'book_id' => $meuLivro->book->id], [
-                            'class' => 'btn btn-default btn-danger',
-                            'data' => [
-                                'confirm' => 'Tem certeza que deseja retirar o livro ' . $meuLivro->book->nome . '?',
-                                'method' => 'post',
-                            ]
-                        ]); ?>
-                </span>
-                    <div>
-                        <label>Livro:</label>
-                        <?= $meuLivro->book->nome ?>
-                    </div>
-                    <div>
-                        <label>Resumo</label>
-                        <div style="max-width: 850px">
-                            <?= $meuLivro->book->resumo ?>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge" style="background-color: white; margin-top: 30px">
+                            <?= Html::a('<i class="glyphicon glyphicon-trash"></i>', ['retirar', 'book_id' => $meuLivro->book->id], [
+                                'class' => 'btn btn-default btn-danger',
+                                'data' => [
+                                    'confirm' => 'Tem certeza que deseja retirar o livro ' . $meuLivro->book->nome . '?',
+                                    'method' => 'post',
+                                ]
+                            ]); ?>
+                        </span>
+                        <div class="media">
+                            <div class="media-left">
+                                <img src="/imagens/book2.jpg" class="media-object" style="width:100px">
+                            </div>
+                            <div class="media-body" style="padding: 20px">
+                                <h4 class="media-heading">
+                                    <strong>
+                                        <?= Html::a($meuLivro->book->nome, ['livros-venda', 'id' => $meuLivro->book->id], [
+                                            'class' => 'show-modal',
+                                        ]) ?>
+                                    </strong></h4>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
             <?php } ?>
         </div>
     </div>

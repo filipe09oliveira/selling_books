@@ -23,6 +23,13 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+
+    <style>
+        .navbar-inverse {
+            background-color: #ffeb3b;
+            border-color: #FFEB3B;
+        }
+    </style>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -37,6 +44,8 @@ AppAsset::register($this);
         ],
     ]);
 
+    $user = Yii::$app->user->identity;
+
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Cadastrar', 'url' => ['/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/login']];
@@ -46,7 +55,7 @@ AppAsset::register($this);
             [
                 'label' => Yii::$app->user->identity->nome . ' ' . Yii::$app->user->identity->sobrenome,
                 'items' => [
-                    ['label' => 'Perfil', 'url' => ['/perfil']],
+                    ['label' => 'Perfil', 'url' => ['/perfil/'.$user->id]],
                     ['label' => 'Meus livros', 'url' => ['book/comprados']],
                     ['label' => 'Sair', 'url' => ['/logout']],
                 ],

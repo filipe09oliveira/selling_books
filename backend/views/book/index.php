@@ -28,7 +28,6 @@ $this->title = 'Livros';
                 'filterModel' => $searchModel,
                 'columns' => [
                     'nome',
-                    'resumo',
                     'autor',
                     'edicao',
                     [

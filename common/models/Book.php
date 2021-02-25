@@ -16,6 +16,8 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $status
  * @property int|null $created_at
  * @property int|null $updated_at
+ *
+ * @property ClientBook $clientBook
  */
 class Book extends \yii\db\ActiveRecord
 {
@@ -25,8 +27,8 @@ class Book extends \yii\db\ActiveRecord
     public static function listStatus()
     {
         return [
-            self::AVENDA => 'A venda',
-            self::VENDIDO => 'Vendido',
+            self::AVENDA => 'Disponível',
+            self::VENDIDO => 'Indisponível',
         ];
     }
 
@@ -74,6 +76,12 @@ class Book extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Deleted At',
         ];
+    }
+
+
+    public function getClientBook()
+    {
+        return $this->hasOne(ClientBook::class, ['book_id' => 'id']);
     }
 
     /**
