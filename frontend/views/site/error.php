@@ -10,18 +10,13 @@ use yii\helpers\Html;
 $this->title = $name;
 ?>
 <div class="site-error">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+    <br>
+    <br>
+    <div class="alert alert-danger" style="text-align: center">
+        <h3>NÃO ENCONTRADO </h3>
+        <p>A PÁGINA QUE VOCÊ TENTOU ACESSAR NÃO EXISTE.</p>
+        <hr>
+        <?= Html::a(''. 'Voltar', ['/'], ['class' => 'btn btn-primary btn-sm']) ?>
     </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
 </div>
+

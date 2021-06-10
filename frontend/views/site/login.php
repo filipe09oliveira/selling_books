@@ -11,34 +11,65 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Login';
 
 ?>
-<div class="site-login">
-    <div class="panel panel-default" style="width: 400px; margin-left:auto;margin-right:auto;">
-        <div class="panel-heading">
-            <h1><?= Html::encode($this->title) ?></h1>
-        </div>
+<body>
+<!-- Header 01 ================================================== -->
+<header class="header_01 header_inner">
+    <div class="header_btm">
+        <h2>BEM VINDO DE VOLTA :)</h2>
+    </div>
+</header>
 
-        <div class="panel-body">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-            <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+<!-- End Header 02
+================================================== -->
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
 
-            <?= $form->field($model, 'rememberMe')->checkbox() ?>
+<!-- Main
+================================================== -->
+<main>
+    <div class="only-form-pages">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="only-form-box">
+                        <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+                        <div class="com_class_form">
+                            <div class="form-group">
 
-            <div style="color:#999;margin:1em 0">
-                Se você esqueceu sua senha, pode <?= Html::a('redefini-la', ['site/request-password-reset']) ?>.
-                <br>
-                Precisa de um novo e-mail de
-                verificação? <?= Html::a('Reenviar', ['site/resend-verification-email']) ?>
-            </div>
+                                <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
-            <div class="form-group">
-                <?= Html::submitButton('ENTRAR', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
+                            </div>
+                            <div class="form-group">
+
+                                <?= $form->field($model, 'password')->passwordInput() ?>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <?= Html::submitButton('ENTRAR', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
+                            </div>
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <?= $form->field($model, 'rememberMe')->checkbox(['class' => 'form-check-input']) ?>
+                                </label>
+                            </div>
+                            <div>
+                                <a class="lost_password" href="lost-password.html"> Esqueci minha senha </a>
+                            </div>
+                        </div>
+                        <?php ActiveForm::end(); ?>
+                        <div class="social_login">
+                            <p class="or_span"><span>or</span></p>
+                            <button class="btn btn-facebook"><i class="fab fa-facebook-f"></i> Log In via Facebook
+                            </button>
+                            <button class="btn btn-google"><i class="fab fa-google-plus-g"></i> Register via Google+
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</main>
 
-
-    <?php ActiveForm::end(); ?>
-</div>

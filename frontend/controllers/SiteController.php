@@ -62,6 +62,7 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+                'layout' => 'error_layout',
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
@@ -77,14 +78,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new BookSearch();
-        $searchModel->status = Book::AVENDA;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $this->layout = "main";
 
-        return $this->render('/book/index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('index');
     }
 
     public function actionPerfil($id)
@@ -108,19 +104,28 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = "main";
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(['/book']);
+            return $this->redirect(['/']);
         } else {
 
             return $this->render('login', [
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionListing()
+    {
+        $this->layout = "main";
+
+        return $this->render('listing');
+
     }
 
     /**

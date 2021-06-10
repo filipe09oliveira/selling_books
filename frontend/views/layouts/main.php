@@ -5,11 +5,7 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
-use common\widgets\Alert;
 
 AppAsset::register($this);
 ?>
@@ -20,71 +16,20 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/img/main/fav.png" type="image/gif" sizes="64x64">
+
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= $this->title . ' — ' . Yii::$app->name ?></title>
     <?php $this->head() ?>
 
-    <style>
-        .navbar-inverse {
-            background-color: #ffeb3b;
-            border-color: #FFEB3B;
-        }
-    </style>
 </head>
 <body>
 <?php $this->beginBody() ?>
+<?= $this->render('/site/nav') ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => '/book',
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
+<?= $content ?>
 
-    $user = Yii::$app->user->identity;
-
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Cadastrar', 'url' => ['/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/login']];
-    } else {
-//        $menuItems[] = ['label' => 'Livros a venda', 'url' => ['/book']];
-        $menuItems[] =
-            [
-                'label' => Yii::$app->user->identity->nome . ' ' . Yii::$app->user->identity->sobrenome,
-                'items' => [
-                    ['label' => 'Perfil', 'url' => ['/perfil/'.$user->id]],
-                    ['label' => 'Meus livros', 'url' => ['book/comprados']],
-                    ['label' => 'Sair', 'url' => ['/logout']],
-                ],
-            ];
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
-
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-    </div>
-</div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
-
+<?= $this->render('/site/footer') ?>
 <?php $this->endBody() ?>
 </body>
 </html>

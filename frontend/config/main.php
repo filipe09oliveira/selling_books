@@ -8,13 +8,15 @@ $params = array_merge(
 
 return [
     'id' => 'frontend',
-    'name' => 'SellingBooks',
+    'name' => 'Nova Costura',
     'sourceLanguage' => 'pt',
     'language' => 'pt',
     'timeZone' => 'America/Recife',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'frontend\controllers',
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log'
+    ],
     'modules' => [
         'gridview' => [
             'class' => '\kartik\grid\Module'
